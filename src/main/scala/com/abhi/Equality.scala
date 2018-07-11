@@ -32,6 +32,7 @@ object Equality extends App {
     import PersonEqInstance._
     val p1 = Person("f1", "l1")
     val p2 = Option(Person("f2", "l2"))
+    
     if (p1 === p1) {
         println("p1 and p2 is the same person")
     }
