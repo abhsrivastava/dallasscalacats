@@ -6,4 +6,7 @@ scalacOptions ++= Seq(
   "-Ypartial-unification" // allow the compiler to unify type constructors of different arities
 )
 
-libraryDependencies += "org.typelevel" %% "cats-core" % "1.1.0"
+libraryDependencies ++= Seq(
+  "org.typelevel" %% "cats-core" % "1.1.0",
+  "joda-time" % "joda-time" % "2.10"
+)
