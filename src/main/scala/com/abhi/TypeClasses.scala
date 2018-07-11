@@ -52,4 +52,5 @@ object TypeClasses extends App {
   // we can re-use the typeclass for Person wrapped in effect
   val p2 = Option(p)
   println(p2.show())
+  println(Show.show(p2))
 }
