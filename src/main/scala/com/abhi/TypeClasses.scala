@@ -14,6 +14,14 @@ object ShowInstances {
       s"FirstName: ${p.firstName} LastName: ${p.lastName}"
     }
   }
+  implicit def personOptionShow[A](implicit s: Show[A]) : Show[Option[A]] = new Show[Option[A]] {
+    def show(pOpt: Option[A]) : String = {
+      pOpt match {
+        case Some(p) => s.show(p)
+        case None => ""
+      }
+    }
+  }
 }
 
 // 3. nterface Syntax 
@@ -40,4 +48,8 @@ object TypeClasses extends App {
   println(p.show())
   // invoke typeclass approach 2
   println(Show.show(p))
+
+  // we can re-use the typeclass for Person wrapped in effect
+  val p2 = Option(p)
+  println(p2.show())
 }
