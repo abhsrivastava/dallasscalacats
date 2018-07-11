@@ -1,7 +1,5 @@
 package com.abhi
 
-case class Person(firstName: String, lastName: String)
-
 // 1. trait
 trait Show[A] {
   def show(a: A) : String
