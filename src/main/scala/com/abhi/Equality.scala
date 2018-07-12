@@ -21,6 +21,10 @@ object Equality extends App {
         println("bug!!")
     }
 
+    if ("abc" == 1) {
+        println("what?")
+    }
+
     if (i1 === i1) {
         println(s"numbers are same")
     }

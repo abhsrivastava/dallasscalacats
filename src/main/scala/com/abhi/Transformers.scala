@@ -43,7 +43,6 @@ object Transformers extends App {
     // another approach to create mt
 
     val mt2 : FutureEitherOption[Int] = 10.pure[FutureEitherOption]
-
     for{
         x <- mt2
     } yield {
