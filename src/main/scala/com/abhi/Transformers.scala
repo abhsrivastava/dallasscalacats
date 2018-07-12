@@ -23,10 +23,12 @@ object Transformers extends App {
         )
     }
 
-    implicit class FutureEither[A, B](val e: Future[Either[A, B]]) extends AnyVal {
-        def toEitherT  = EitherT(e)
+    type FutureEither[A] = EitherT[Future, String, A]
+    type FutureEitherOption[A] = OptionT[FutureEither, A]
+    implicit class FutureEitherOps[A, B](val e: Future[Either[A, B]]) extends AnyVal {
+        def toEitherT = EitherT(e)
     }
-    implicit class FutureEitherOption[A, B](val o: EitherT[Future, A, Option[B]]) extends AnyVal {
+    implicit class FutureEitherOptionOps[A, B](val o: EitherT[Future, A, Option[B]]) extends AnyVal {
         def toOptionT = OptionT(o)
     }
     
@@ -39,9 +41,8 @@ object Transformers extends App {
     }
 
     // another approach to create mt
-    type FutureEither2[A] = EitherT[Future, String, A]
-    type FutureEitherOption2[A] = OptionT[FutureEither2, A]
-    val mt2 : FutureEitherOption2[Int] = 10.pure[FutureEitherOption2]
+
+    val mt2 : FutureEitherOption[Int] = 10.pure[FutureEitherOption]
 
     for{
         x <- mt2
@@ -49,5 +50,4 @@ object Transformers extends App {
         println(x.getClass.getName)
         println(x)
     }
-
 }
