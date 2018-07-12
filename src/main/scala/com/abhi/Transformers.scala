@@ -37,5 +37,4 @@ object Transformers extends App {
         println(x.getClass.getName)
         println(x)
     }
-    Await.result(fut.value.value, Duration.Inf)
 }
