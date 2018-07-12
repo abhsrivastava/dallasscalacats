@@ -31,10 +31,23 @@ object Transformers extends App {
     }
     
     val mt = myFunction().toEitherT.toOptionT
-    val fut = for{
+    for{
         x <- mt
     } yield {
         println(x.getClass.getName)
         println(x)
     }
+
+    // another approach to create mt
+    type FutureEither2[A] = EitherT[Future, String, A]
+    type FutureEitherOption2[A] = OptionT[FutureEither2, A]
+    val mt2 : FutureEitherOption2[Int] = 10.pure[FutureEitherOption2]
+
+    for{
+        x <- mt2
+    } yield {
+        println(x.getClass.getName)
+        println(x)
+    }
+
 }
